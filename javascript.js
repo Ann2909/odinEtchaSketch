@@ -20,14 +20,30 @@ for (let i = 0; i < 16; i++) {
 }
 
 //Set up a hover effect so that the grid divs change color when your mouse passes over them, leaving a (pixelated) trail through your grid like a pen would.
-//Hint: Hovering is what happens when your mouse enters a div and ends when your mouse leaves it. You can set up event listeners for either of those events as a starting point.
-//Changing the div's background color using JavaScript
 for (let div of squareDivs) {
     div.addEventListener('mouseenter', (e) => {
         div.style.backgroundColor = 'black';
     });
-    div.addEventListener('mouseleave', (e) => {
-        div.style.backgroundColor = 'white';
-    });
 } 
 
+//Add a button on the top of the screen that will send the user a popup asking for the number of squares per side for the new grid. 
+//First, let's have a button that will redraw
+let redrawBtn = document.createElement('button');
+redrawBtn.textContent = 'Click to redraw';
+let header1 = document.querySelector('h1');
+let body = document.querySelector('#body');
+body.insertBefore(redrawBtn, header1);
+
+redrawBtn.addEventListener('click', (e) => {
+    for (let div of squareDivs) {
+        div.style.backgroundColor = 'white';
+    }
+});
+
+
+
+//Once entered, the existing grid should be removed, and a new grid should be generated in the same total space as before (e.g., 960px wide) so that you've got a new sketch pad.
+//Tip: Set the limit for the user input to a maximum of 100. A larger number of squares results in more computer resources being used, potentially causing delays, freezing, or crashing that we want to prevent.
+//Research button tags in HTML and how you can make a JavaScript function run when one is clicked.
+//Also check out prompts.
+//You should be able to enter 64 and have a brand new 64x64 grid pop up without changing the total amount of pixels used.
