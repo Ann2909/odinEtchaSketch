@@ -1,5 +1,7 @@
 //Create a webpage with a 16x16 grid of square divs.
 let container = document.querySelector('#container');
+let header1 = document.querySelector('h1');
+let body = document.querySelector('#body');
 
 let squareDivs = [];
 for (let i = 0; i < 16; i++) {
@@ -30,8 +32,7 @@ for (let div of squareDivs) {
 //First, let's have a button that will redraw
 let redrawBtn = document.createElement('button');
 redrawBtn.textContent = 'Click to redraw';
-let header1 = document.querySelector('h1');
-let body = document.querySelector('#body');
+
 body.insertBefore(redrawBtn, header1);
 
 redrawBtn.addEventListener('click', (e) => {
@@ -40,7 +41,15 @@ redrawBtn.addEventListener('click', (e) => {
     }
 });
 
+//Let's have a button that will draw a new sketch
+let newBtn = document.createElement('button');
+newBtn.textContent = 'Click to draw a new one';
+body.insertBefore(newBtn, header1);
 
+newBtn.addEventListener('click', (e) => {
+    let newGrid = prompt('How many squares do you want per row?', '16');
+    body.removeChild(container);
+});
 
 //Once entered, the existing grid should be removed, and a new grid should be generated in the same total space as before (e.g., 960px wide) so that you've got a new sketch pad.
 //Tip: Set the limit for the user input to a maximum of 100. A larger number of squares results in more computer resources being used, potentially causing delays, freezing, or crashing that we want to prevent.
