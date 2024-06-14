@@ -58,9 +58,16 @@ function drawNewGrid(squareNum, holder) {
 
 //Set up a hover effect so that the grid divs change color when our mouse passes over them, leaving a (pixelated) trail through your grid like a pen would.
 function setUpHoverEffect() {
+    let userChoice = confirm("Wanna be have some random color?");
+    let squareColor;
+    if (userChoice) {
+        squareColor = `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`;
+    } else {
+        squareColor = 'black';
+    }
     for (let div of squareDivs) {
         div.addEventListener('mouseenter', (e) => {
-            e.target.style.backgroundColor = 'black';
+            e.target.style.backgroundColor = squareColor;   
         });
     } 
 }
