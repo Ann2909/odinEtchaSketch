@@ -4,20 +4,22 @@
 
 #container {
     margin: 100px auto;
-    max-width: 960px;
-    max-height: 960px;
+    width: 1000px;
+    height: 1000px;
+    display: flex;
+    flex-direction: column;
 }
 
 .square {
-    min-width: 30px;
-    min-height: 30px;
-    border: 2px solid red;
-    margin: 5px; /* Add space between squares */
+    flex: 1;
+    border: 2px solid rgba(158, 222, 233, 0.404);
+    margin: 0; /* Add space between squares */
 }
 
 .row {
+    flex: 1;
+    width: 1000px;
     display: flex;
     flex-direction: row;
-    justify-content: center;
 }
 
