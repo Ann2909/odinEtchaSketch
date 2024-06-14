@@ -25,7 +25,8 @@ newBtn.addEventListener('click', (e) => {
         container.removeChild(container.firstChild);
     }
 
-    let newGrid = prompt('How many squares do you want per row?', '16');
+    let newGrid = parseInt(prompt('How many squares do you want per row?', '16'));
+    while (newGrid > 100) newGrid = parseInt(prompt('Please choose a number that is 100 or lower, sorry:', '99'));
     
     //effectively remove all the previous references and make a new grid
     squareDivs = drawNewGrid(newGrid, container);
