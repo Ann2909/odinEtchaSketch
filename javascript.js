@@ -7,17 +7,9 @@ let newBtn = document.querySelector('.newBtn');
 
 let squareDivs = [];
 
-drawNewGrid(16, container);
+//default 16x16 grid
+squareDivs = drawNewGrid(16, container);
 setUpHoverEffect();
-
-//Set up a hover effect so that the grid divs change color when your mouse passes over them, leaving a (pixelated) trail through your grid like a pen would.
-function setUpHoverEffect() {
-    for (let div of squareDivs) {
-        div.addEventListener('mouseenter', (e) => {
-            div.style.backgroundColor = 'black';
-        });
-    } 
-}
 
 //First, let's have a button that will redraw
 redrawBtn.addEventListener('click', (e) => {
@@ -28,23 +20,20 @@ redrawBtn.addEventListener('click', (e) => {
 
 //Let's have a button that will draw a new sketch
 newBtn.addEventListener('click', (e) => {
-    body.removeChild(container);
-    let newContainer = document.createElement('div');
-    newContainer.setAttribute('id', 'newcontainer');
-    body.appendChild(newContainer);
+    //delete current grid //container.innerHTML = ''; also works
+    while (container.firstChild) {
+        container.removeChild(container.firstChild);
+    }
 
     let newGrid = prompt('How many squares do you want per row?', '16');
     
-    //remove all references to the old divs that have been removed
-    while (squareDivs.length > 0) {
-        squareDivs.pop();
-    }
-    drawNewGrid(newGrid, newContainer);
+    //effectively remove all the previous references and make a new grid
+    squareDivs = drawNewGrid(newGrid, container);
     //set up hover effect for new grid
     setUpHoverEffect();
 });
 
-//function to create a grid of as many squares as the user wants
+//function to create a grid of as many squares as the user wants and return the references of those divs
 function drawNewGrid(squareNum, holder) {
     let refSquareDivs = [];
     for (let i = 0; i < squareNum; i++) {
@@ -63,5 +52,14 @@ function drawNewGrid(squareNum, holder) {
     
         holder.appendChild(eachSquareRow);
     }
-    squareDivs = refSquareDivs;
+    return refSquareDivs;
+}
+
+//Set up a hover effect so that the grid divs change color when our mouse passes over them, leaving a (pixelated) trail through your grid like a pen would.
+function setUpHoverEffect() {
+    for (let div of squareDivs) {
+        div.addEventListener('mouseenter', (e) => {
+            e.target.style.backgroundColor = 'black';
+        });
+    } 
 }
